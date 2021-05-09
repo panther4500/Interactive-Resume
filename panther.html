@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JavaScript,JS,Web development,front end,PHP,JQuery,SQL,Back End,Developer,Database">
+    <meta name="description" content="Personal Portfolio: Web Developer and Designer">
+    <meta name="author" content="Panther">
+    <title>Panther | Web Developer</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="panther.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="favicon.ico.jpg">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <div id="progressbar">
+        <div id="loader"></div>
+      </div>
+      <script>
+        document.ready = function( callback ) {
+          if( document.readyState != 'loading' ) {
+              callback();
+          }
+          else {
+              document.addEventListener( 'DOMContentLoaded', callback );
+          }
+      };
+      
+      
+      (function() {
+      
+          document.ready( function() {
+      
+              /* We have to know some stuff of the current screen, that we will get over the following variables */
+              let progressbar = document.getElementById( "loader" );
+              if( !!progressbar ) {
+      
+                  let body = document.getElementsByTagName( "body" )[0];
+                  let window_height = body.offsetHeight;
+                  let client_height = document.documentElement.clientHeight;
+      
+                  /* The following variables are for storing the neccessary scroll-data */
+                  let last_known_scroll_position = 0;
+                  let ticking = false;
+      
+                  /* This Event-Listener will hook onto the Scroll-Event of the Browser */
+                  window.addEventListener( 'scroll', function( e ) {
+      
+                      last_known_scroll_position = window.scrollY;
+                      if( !ticking ) {
+      
+                          window.requestAnimationFrame( function() {
+                                  
+                              nowScrolling( last_known_scroll_position );
+                              ticking = false;
+      
+                          });
+                          ticking = true;
+      
+                      }
+      
+                  });
+      
+                  /*
+                  I use the Client-Height for a accurate percentage of the current screen-state.
+                  On window-resizing the variable "client_height" would stay the same, if I won't add this Event-Listener
+                  */
+                  window.addEventListener( "resize", refactorScreenHeight );
+                  var mutationObserver = new MutationObserver( refactorScreenHeight );
+                  mutationObserver.observe(document.documentElement, {
+                      attributes: true,
+                      characterData: true,
+                      childList: true,
+                      subtree: true,
+                      attributeOldValue: true,
+                      characterDataOldValue: true
+                  });
+      
+                  function refactorScreenHeight() {
+      
+                      client_height = document.documentElement.clientHeight;
+                      window_height = body.offsetHeight;
+      
+                  }
+      
+                  function nowScrolling( last_known_scroll_position ) {
+      
+                      /* Here you also can add your own functions. The following is an example for the Scroll-Bar */
+                      let percentage = last_known_scroll_position / ( window_height - client_height ) * 100;
+                      progressbar.style.right = "calc( 100% - " + Math.round( percentage ) + "% )";
+      
+                  }
+      
+              }
+      
+          });
+      
+      })();
+        </script>
+         <script> 
+            document.onreadystatechange = function() { 
+                if (document.readyState !== "complete") { 
+                    document.querySelector( 
+                      "body").style.visibility = "hidden"; 
+                    document.querySelector( 
+                      "#progressbar").style.visibility = "visible"; 
+                } else { 
+                    document.querySelector( 
+                      "#progressbar").style.display = "none"; 
+                    document.querySelector( 
+                      "body").style.visibility = "visible"; 
+                } 
+            }; 
+          </script>
+    <nav class="navbar">
+        <img class="logo" src="panther.jpg" alt="logo">
+        <ul>
+            <li><button class="menu-button" onclick=window.location.href="#contact" >Contact</button></li>
+            <li><a href="#project">Projects</a></li>
+            <li><a href="#sk">Skills</a></li>
+            <li><a href="#experience">Experiences</a></li>
+            <li><a href="#profile">Profile</a></li>
+            
+        </ul>
+
+    </nav>
+    
+    <div class="icon-bar">
+        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+        <a href="#" class="google"><i class="fa fa-google"></i></a>
+        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="github"><i class="fa fa-github"></i></a>
+        
+    </div>
+    
+    <div class="mid-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-6"><div class="p1"> Hi there,<br>I'm <span class=panther>Panther</span></div></div>
+                <div class="col-6"><hr class="vl">
+                    <img class="bg-image" src="pantherbg.jpg"  "></div>
+              </div>
+
+
+        </div>
+        
+        
+    </div>
+
+    <div id="profile">
+        <h1>PROFILE</h1><br>
+        <h3>I'm a creative full stack developer & Data Science enthusiast</h3>
+        <hr class='hr1'>
+        <div class="about1">
+          <h5>ABOUT ME</h5><br><br>
+          <hr class="hr6">
+          <p class="p2">
+            Hi,I'm Prabhat and I love designing <br>
+              beautiful and structured web applications,<br>
+              blended with smooth functioning.<br>
+              I also follows my passion in Data Science<br>
+              and Machine Learning. Also I likes working <br>
+              in teams and generating great results with<br>
+              with the help of team building and social <br>
+              skills. I believe that everyone has dreams,<br>
+              success come to those who ACT!
+          </p>
+        </div>
+       
+        <img class="profile-pic" src="cartoon.jpg" alt="profile">
+        <div class="about2">
+            <h5> PERSONAL DETAILS</h5><br><br>
+            <hr class="hr6">
+            <p class="p2">
+                <span class="b">Name : </span> Prabhat Panwar<br>
+                <span class="b">Age : </span> 21 years<br>
+                <span class="b">Profession : </span> Computer Science & Engineering<br>
+                <span class="b">Hobbies : </span> Book reading, web designing,<br> marathon,
+                calisthenics, meditating<br>
+                <span class="b">Contact no. : </span> 9876543210<br>
+                <span class="b">Location : </span> Pune, India<br>
+                <br><br>
+            </p>
+        </div>
+    </div>
+    
+       <div id="experience">
+            <h1>EXPERIENCE</h1>
+            <hr class="hr2">
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                      <br>
+                    <h6> EDUCATION</h6><br><br><br><br>
+
+
+                        <!-- The Timeline -->
+
+<ul class="timeline">
+
+	<!-- Item 1 -->
+	<li>
+		<div class="direction-r">
+			<div class="flag-wrapper">
+				<span class="flag">Graduation</span>
+				<span class="time-wrapper"><span class="time">2019 - present</span></span>
+			</div>
+			<div class="desc">MIT World Peace University<br>  Computer Science and Engineering 
+            <br>with speacialization in data science<br>
+        and machine learning.<br>Current CGPA:  </div>
+		</div>
+	</li>
+  
+	<!-- Item 2 -->
+	<li>
+		<div class="direction-l">
+			<div class="flag-wrapper">
+				<span class="flag">Class XII</span>
+				<span class="time-wrapper"><span class="time">2017 - 2018</span></span>
+			</div>
+			<div class="desc">Army Public School,Secunderabad<br>
+            Studied PCM with Informatic practices as optional including Java and DBMS and obtained 94.8% in final exam</div>
+		</div>
+	</li>
+
+	<!-- Item 3 -->
+	<li>
+		<div class="direction-r1">
+			<div class="flag-wrapper" >
+				<span class="flag" >Class X</span>
+				<span class="time-wrapper"><span class="time">2015 - 2016</span></span>
+			</div>
+			<div class="desc">Army Public School, Secunderabad<br>
+            CGPA: 10</div>
+		</div>
+	</li>
+  
+</ul>
+
+
+
+                  </div>
+                  
+                  <div class="col">
+                    <hr class="vl1">
+                    <h5 style="margin-left: 5rem;"> PROFESSIONAL COURSES</h5><br><br>
+
+
+
+                    <ul class="tilesWrap">
+                        <li>
+                            <h2>01</h2>
+                            <h3>Python Bootcamp</h3>
+                            <p>
+                               2021 complete Pyttthon bootcamp by Udemy 
+                               <br><br><br><br><br>
+                            </p>
+                            <button>Cerificate</button>
+                        </li>
+                        <li>
+                            <h2>02</h2>
+                            <h3>Full Stack Web Development</h3>
+                            <p>
+                               Taught by instructor Angela Yu including HTML,CSS,Bootstrap,<br>JS,NodeJS,ReactJS,<br>DBMS and more
+                               <br><br>
+                            </p>
+                            <button>Cerificate</button>
+                        </li>
+                        <li>
+                            <h2>03</h2>
+                            <h3>Applied Data Science Specialization</h3>
+                            <p>
+                                But also the leap into electronic typesetting, remaining essentially 
+                                unchanged. It was popularised in the 1960s.
+                            </p>
+                            <button>Cerificate</button>
+                        </li>
+                        <li>
+                            <h2>04</h2>
+                            <h3>Ethical Hacking</h3>
+                            <p>
+                                With the release of Letraset sheets containing Lorem Ipsum passages,  
+                                and more recently with desktop publishing software like Aldus PageMaker 
+                               <br><br>
+                            </p>
+                            <button>Cerificate</button>
+                        </li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+            
+        </div>
+ 
+        <div id="sk">
+            <h1>Skills</h1>
+            <hr class="hr3">
+            
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="tp">
+                        <h7>Programming</h7>
+                        <ul class="lt list-unstyled list pl-5">
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>HTML5
+                                 <span class="str">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                </span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>CSS3
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>JavaScript
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="	fa fa-play"></i>Bootstrap 5
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i> JQuery
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>NodeJS
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>ReactJS
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>MySQL
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>MongoDB
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>OOP : C++
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>C
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>Python
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>R
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                        </ul>
+                      
+
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="tp">
+                        <h7>Frameworks</h7>
+                        <ul class="lt list-unstyled list pl-5">
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>Tableau
+                                 <span class="str">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                </span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>TensorFlow
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>PyCharm
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                            <li class="mb-3 d-flex align-items-center"><i class="	fa fa-play"></i>Pandas
+                                <span class="str">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    </span></li>
+                                    <li class="mb-3 d-flex align-items-center"><i class="	fa fa-play"></i>NumPy
+                                        <span class="str">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            </span></li>
+                        </ul>
+
+
+                        <h7>Soft-skills</h7>
+                        <ul class="lt list-unstyled list pl-5">
+                            <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>Team Building  <i class="fa fa-play" style="margin-left: 6rem;"></i>Organizational skills
+                               </li>
+                               
+                               <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>Leadership <i class="fa fa-play" style="margin-left: 7.5rem;"></i>Communication Skills
+                               </li>
+                               
+                               <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>Quick Learner <i class="fa fa-play" style="margin-left: 6rem;"></i>Time Management
+                               </li>
+                            
+                               <li class="mb-3 d-flex align-items-center"><i class="fa fa-play"></i>Decision Making  <i class="fa fa-play" style="margin-left: 4.6rem;"></i>Problem-solving
+                               </li>
+                            
+
+                        </ul>
+
+                    </div>
+                  </div>
+               
+                </div>
+              </div>
+            
+            
+        </div> 
+
+       <div id="project">
+            <h1>Projects</h1>
+            <hr class="hr2">
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="container1">
+                            <div class="front side">
+                                <div class="content">
+                                    <h9>Project 1</h9>
+                                    <p>Web Development
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="back side">
+                                <div class="content">
+                                    <h9>Contact</h9>
+                                    <a href="#" class="myButton">View Project</a>
+                                    
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="container1">
+                            <div class="front side">
+                                <div class="content">
+                                    <h9>Project 2</h9>
+                                    <p>Web Development
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="back side">
+                                <div class="content">
+                                    <h9>Contact </h9>
+                                    <a href="#" class="myButton">View Project</a>
+                                    
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="container1">
+                            <div class="front side">
+                                <div class="content">
+                                    <h9>Project 3</h9>
+                                    <p>Web Development
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="back side">
+                                <div class="content">
+                                    <h9>Contact </h9>
+                                    <a href="#" class="myButton">View Project</a>
+                                    
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm"> <div class="container1">
+                    <div class="front side">
+                        <div class="content">
+                            <h9>Project 4</h9>
+                            <p>Data Science
+                            </p>
+                        </div>
+                    </div>
+                    <div class="back side">
+                        <div class="content">
+                            <h9>Contact</h9>
+                            <a href="#" class="myButton">View Project</a>
+                            
+                        </div>
+                    </div>
+                
+                </div></div>
+                  <div class="col-sm">
+                    <div class="container1">
+                        <div class="front side">
+                            <div class="content">
+                                <h9>Project 4</h9>
+                                <p>Data Science
+                                </p>
+                            </div>
+                        </div>
+                        <div class="back side">
+                            <div class="content">
+                                <h9>Contact</h9>
+                                <a href="#" class="myButton">View Project</a>
+                                
+                            </div>
+                        </div>
+                    
+                    </div>
+                  </div>
+                  <div class="col-sm"> <div class="container1">
+                    <div class="front side">
+                        <div class="content">
+                            <h9>Project 6</h9>
+                            <p>Data Science
+                            </p>
+                        </div>
+                    </div>
+                    <div class="back side">
+                        <div class="content">
+                            <h9>Contact</h9>
+                            <a href="#" class="myButton">View Project</a>
+                            
+                        </div>
+                    </div>
+                
+                </div></div>
+                </div>
+              </div>
+            <br><br>
+            <button id="download-btn">
+                <i class="fa fa-download"></i> Download Resume
+            </button>
+        </div>
+
+<div id='foot'>
+<footer id="dk-footer" class="dk-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <div class="dk-footer-box-info">
+                        <a href="index.html" class="footer-logo">
+                            <img src="bg.jpg" alt="logo" class="img-fluid">
+                        </a>
+                        <p class="footer-info-text">
+                           Thank you for the visit. You can contact me for collaboration in amazing web projects.
+                        </p>
+                        <div class="footer-social-link">
+                            <h3>Follow me on</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-instagram " ></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-github" style="background-color: rgb(34, 34, 29);"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Social link -->
+                    </div>
+                    <!-- End Footer info -->
+                    <div class="footer-awarad">
+                        <img src="images/icon/best.png" alt="">
+                        <p>Best Design </p>
+                    </div>
+                </div>
+                <!-- End Col -->
+                <div class="col-md-12 col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-us">
+                                <div class="contact-icon">
+                                    <i class="fa fa-map-o" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>Pune, India</h3>
+                                    <p>MIT World Peace University</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                        <div class="col-md-6">
+                            <div class="contact-us contact-us-last">
+                                <div class="contact-icon">
+                                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>9876543210</h3>
+                                    <p>Contact me</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Contact Row -->
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget footer-left-widget">
+                                <div class="section-heading">
+                                    <h3>Useful Links</h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">About </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Experience</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Projects</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Skills</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Websites</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Resume</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Faq</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Widget -->
+                        </div>
+                        <!-- End col -->
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget">
+                                <div class="section-heading">
+                                    <h3>Contact </h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <section id="contact">
+                                    
+                                    <article>
+                                    <p class="p4">Hope you liked the work.I'd love to hear from you :)</p>
+                                        
+                                            <label for="checkcontact" class="contactbutton"><div class="mail"></div></label><input id="checkcontact" type="checkbox">
+                                    
+                                            <form action="" method="post" class="contactform">
+                                                <p class="input_wrapper"><input type="text" name="contact_nom" value=""  id ="contact_nom"><label for="contact_nom">NAME</label></p>
+                                                <p class="input_wrapper"><input type="text" name="contact_email" value=""  id ="contact_email"><label for="contact_email">EMAIL</label></p>
+                                                <p class="input_wrapper"><input type="text" name="contact_sujet" value=""  id ="contact_sujet"><label for="contact_sujet">SUBJECT</label></p>
+                                                <p class="textarea_wrapper"><textarea name="contact_message" id="contact_message" placeholder="Message"></textarea></p>
+                                                <p class="submit_wrapper"><input type="submit" value="SUBMIT"></p>			
+                                            </form>
+                                    </article>
+                                </section>
+                                <!-- End form -->
+                            </div>
+                            <!-- End footer widget -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Widget Row -->
+        </div>
+        <!-- End Contact Container -->
+
+
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Copyright © 2021, All Right Reserved Panther</span>
+                    </div>
+                    <!-- End Col -->
+                    <div class="col-md-6">
+                        <div class="copyright-menu">
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms</a>
+                                </li>
+                                <li>
+                                    <a href="#">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Copyright Container -->
+        </div>
+        <!-- End Copyright -->
+        <!-- Back to top -->
+        <div id="back-to-top" class="back-to-top">
+            <button class="btn btn-dark" href="container1" title="Back to Top" style="display: block;">
+                <i class="fa fa-angle-up"></i>
+            </button>
+        </div>
+        
+</footer>
+</div>
+
+
+
+
+
+</body>
+</html>
